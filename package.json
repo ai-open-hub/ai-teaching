@@ -6,7 +6,6 @@
     "dev": "next dev --turbo",
     "build": "tsx db/migrate && next build",
     "start": "next start",
-    "lint": "next lint",
     "lint:fix": "next lint --fix",
     "lint:clear": "rimraf node_modules/.cache/eslint && next lint",
     "clean": "rimraf node_modules/.cache && rimraf .next"
