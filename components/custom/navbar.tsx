@@ -1,10 +1,7 @@
 import Link from "next/link";
 
-import { auth, signOut } from "@/app/(auth)/auth";
-
 import { History } from "./history";
 import { ThemeToggle } from "./theme-toggle";
-
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -12,6 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+
+import { auth, signOut } from "@/app/(auth)/auth";
 
 export const Navbar = async () => {
   let session = await auth();

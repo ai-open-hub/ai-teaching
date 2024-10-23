@@ -6,7 +6,17 @@
     "prettier",
     "plugin:tailwindcss/recommended"
   ],
-  "plugins": ["import", "tailwindcss"],
+  "plugins": [
+    "import", 
+    "tailwindcss"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
+  },
   "rules": {
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
