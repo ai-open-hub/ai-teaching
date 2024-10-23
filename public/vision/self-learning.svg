@@ -1,0 +1,44 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  {/* 背景形状 */}
+  <rect
+    x="12" y="12"
+    width="40" height="40"
+    rx="8"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    opacity="0.1"
+  />
+  
+  {/* 书本造型 */}
+  <path
+    d="M20,20
+       c0,0 12,-6 24,0
+       v24
+       c0,0 -12,-6 -24,0
+       v-24z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+  />
+  
+  {/* 快乐的页面 */}
+  <path
+    d="M28,28 s4,-2 8,0
+       M28,34 s4,-2 8,0"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  
+  {/* 飘动的纸飞机 */}
+  <path
+    d="M36,16 l8,8 l-8,8"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

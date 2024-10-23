@@ -78,6 +78,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -119,4 +123,13 @@
   .skeleton-div {
     @apply bg-foreground/20 animate-pulse;
   }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-in {
+  animation: fade-in 1s ease-out;
 }

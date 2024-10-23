@@ -7,9 +7,9 @@ import { ThemeProvider } from "@/components/custom/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chat.vercel.ai"),
-  title: "Next.js Chatbot Template",
-  description: "Next.js chatbot template using the AI SDK.",
+  metadataBase: new URL("https://enjooo.com"),
+  title: "AI Teaching - 智能教育助手",
+  description: "AI赋能教育，激发学习兴趣，培养自学能力",
 };
 
 export default async function RootLayout({

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  {/* 背景形状 */}
+  <path
+    d="M8,32 
+       C8,18 18,8 32,8
+       C46,8 56,18 56,32
+       C56,46 46,56 32,56
+       C18,56 8,46 8,32z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    opacity="0.1"
+  />
+  
+  {/* 灯泡创意形状 */}
+  <path
+    d="M32,20
+       a12,12 0 1,1 0,24
+       a12,12 0 1,1 0,-24z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+  
+  {/* 光线效果 */}
+  <path
+    d="M32,14 v-4
+       M46,18 l2.8,-2.8
+       M50,32 h4
+       M46,46 l2.8,2.8
+       M32,50 v4
+       M18,46 l-2.8,2.8
+       M14,32 h-4
+       M18,18 l-2.8,-2.8"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+  
+  {/* 中心思维泡泡 */}
+  <circle cx="28" cy="32" r="3" fill="currentColor"/>
+  <circle cx="36" cy="32" r="3" fill="currentColor"/>
+</svg>
