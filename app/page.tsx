@@ -1,5 +1,26 @@
 import { ArrowRight } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+
+// 定义类型接口
+interface VisionCardProps {
+    number: string;
+    title: string;
+    description: string;
+    image: string;
+  }
+  
+  interface ExperienceCardProps {
+    title: string;
+    description: string;
+    image: string;
+    align: 'left' | 'right';
+  }
+  
+  interface FooterSectionProps {
+    title: string;
+    items: string[];
+  }
 
 export default function Page() {
   return (
@@ -144,26 +165,6 @@ export default function Page() {
     </main>
   );
 }
-
-// 定义类型接口
-interface VisionCardProps {
-    number: string;
-    title: string;
-    description: string;
-    image: string;
-  }
-  
-  interface ExperienceCardProps {
-    title: string;
-    description: string;
-    image: string;
-    align: 'left' | 'right';
-  }
-  
-  interface FooterSectionProps {
-    title: string;
-    items: string[];
-  }
 
 // Vision Card Component
 function VisionCard({ number, title, description, image }: VisionCardProps) {
