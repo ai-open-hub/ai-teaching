@@ -2,9 +2,9 @@ import { compare } from "bcrypt-ts";
 import NextAuth, { User, Session } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-import { authConfig } from "./auth.config";
-
 import { getUser } from "@/db/queries";
+
+import { authConfig } from "./auth.config";
 
 interface ExtendedSession extends Session {
   user: User;
