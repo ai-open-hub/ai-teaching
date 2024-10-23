@@ -145,8 +145,28 @@ export default function Page() {
   );
 }
 
+// 定义类型接口
+interface VisionCardProps {
+    number: string;
+    title: string;
+    description: string;
+    image: string;
+  }
+  
+  interface ExperienceCardProps {
+    title: string;
+    description: string;
+    image: string;
+    align: 'left' | 'right';
+  }
+  
+  interface FooterSectionProps {
+    title: string;
+    items: string[];
+  }
+
 // Vision Card Component
-function VisionCard({ number, title, description, image }) {
+function VisionCard({ number, title, description, image }: VisionCardProps) {
   return (
     <div className="group relative bg-zinc-900 rounded-2xl p-6 transition-all hover:bg-zinc-800">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
@@ -164,7 +184,7 @@ function VisionCard({ number, title, description, image }) {
   );
 }
 
-function ExperienceCard({ title, description, image, align }) {
+function ExperienceCard({ title, description, image, align }: ExperienceCardProps) {
   return (
     <div
       className={`flex flex-col ${align === "right" ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-12`}
@@ -192,7 +212,7 @@ function ExperienceCard({ title, description, image, align }) {
 }
 
 // Footer Section Component
-function FooterSection({ title, items }) {
+function FooterSection({ title, items }: FooterSectionProps) {
   return (
     <div>
       <h4 className="font-medium mb-4">{title}</h4>
