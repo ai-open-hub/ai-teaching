@@ -80,7 +80,7 @@ export interface MathConcept {
   
   // 学习资源
   resources: Array<{
-    type: 'video' | 'article' | 'interactive' | 'exercise';
+    type: 'video' | 'article' | 'interactive' | 'exercise' | 'game';
     title: string;
     url: string;
   }>;
