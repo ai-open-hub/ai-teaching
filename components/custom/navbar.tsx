@@ -1,3 +1,11 @@
+import { 
+  BookOpen, 
+  Brain, 
+  Calculator, 
+  FlaskConical,
+  Layout,
+  ChevronDown 
+} from "lucide-react";
 import Link from "next/link";
 
 import { auth, signOut } from "@/app/(auth)/auth";
@@ -10,90 +18,106 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 
 export const Navbar = async () => {
   let session = await auth();
 
+  const navItems = [
+    {
+      title: "个人中心",
+      href: "/dashboard",
+      icon: Layout,
+    },
+    {
+      title: "数学思维",
+      href: "/math",
+      icon: Calculator,
+    },
+    {
+      title: "阅读训练",
+      href: "/reading",
+      icon: BookOpen,
+    },
+    {
+      title: "思维培养",
+      href: "/thinking",
+      icon: Brain,
+    },
+    {
+      title: "科学探索",
+      href: "/explore",
+      icon: FlaskConical,
+    },
+  ];
+
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border/40 z-50">
-      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Left Section */}
-        <div className="flex items-center gap-8">
-          <Link href="/" className="text-xl font-medium hover:text-primary transition-colors">
-            AI Teaching
-          </Link>
-          
-          {/* Main Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link 
-              href="/#vision" 
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              愿景
-            </Link>
-            <Link 
-              href="/#experience" 
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              体验
-            </Link>
-            <Link 
-              href="/chat" 
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              开始对话
+    <nav className="bg-background/95 backdrop-blur fixed top-0 left-0 right-0 border-b border-border z-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo & Brand */}
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="text-xl font-bold">AI Teaching</span>
             </Link>
           </div>
-        </div>
 
-        {/* Right Section */}
-        <div className="flex items-center gap-4">
-          {/* History - Only show for authenticated users */}
-          {session && <History user={session.user} />}
-
-          {/* Theme Toggle & Auth */}
-          {session ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="secondary" className="h-9">
-                  {session.user?.email}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuItem>
-                  <Link href="/dashboard" className="w-full">
-                    学习中心
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <ThemeToggle />
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-red-500">
-                  <form
-                    className="w-full"
-                    action={async () => {
-                      "use server";
-                      await signOut({ redirectTo: "/" });
-                    }}
-                  >
-                    <button type="submit" className="w-full text-left">
-                      退出登录
-                    </button>
-                  </form>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" className="h-9" asChild>
-                <Link href="/login">登录</Link>
-              </Button>
-              <Button variant="default" className="h-9" asChild>
-                <Link href="/register">立即开始</Link>
-              </Button>
+          {/* Navigation Items */}
+          {session && (
+            <div className="hidden md:flex space-x-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center space-x-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span>{item.title}</span>
+                </Link>
+              ))}
             </div>
           )}
+
+          {/* Auth & Theme */}
+          <div className="flex items-center space-x-4">
+            {session ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="space-x-2">
+                    <span>{session.user?.email}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    <History user={session?.user} />
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <ThemeToggle />
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="text-red-500">
+                    <form
+                      className="w-full"
+                      action={async () => {
+                        "use server";
+                        await signOut({ redirectTo: "/" });
+                      }}
+                    >
+                      <button type="submit" className="w-full text-left">
+                        退出登录
+                      </button>
+                    </form>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild>
+                <Link href="/login">登录</Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </nav>
