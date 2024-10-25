@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { Toaster } from "sonner";
 
+import "./globals.css"
+
 import { Navbar } from "@/components/custom/layout/navbar";
 import { ThemeProvider } from "@/components/custom/theme-provider";
-
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AI Teaching - 智能教育助手",
