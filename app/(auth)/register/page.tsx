@@ -23,13 +23,13 @@ export default function Page() {
 
   useEffect(() => {
     if (state.status === "user_exists") {
-      toast.error("Account already exists");
+      toast.error("该账号已存在");
     } else if (state.status === "failed") {
-      toast.error("Failed to create account");
+      toast.error("账号创建失败");
     } else if (state.status === "invalid_data") {
-      toast.error("Failed validating your submission!");
+      toast.error("提交的数据验证失败！");
     } else if (state.status === "success") {
-      toast.success("Account created successfully");
+      toast.success("账号创建成功");
       router.refresh();
     }
   }, [state, router]);
@@ -43,22 +43,21 @@ export default function Page() {
     <div className="flex h-screen w-screen items-center justify-center bg-background">
       <div className="w-full max-w-md overflow-hidden rounded-2xl gap-12 flex flex-col">
         <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="text-xl font-semibold dark:text-zinc-50">Sign Up</h3>
+          <h3 className="text-xl font-semibold dark:text-zinc-50">注册账号</h3>
           <p className="text-sm text-gray-500 dark:text-zinc-400">
-            Create an account with your email and password
+            创建一个新的账号
           </p>
         </div>
         <AuthForm action={handleSubmit} defaultEmail={email}>
-          <SubmitButton>Sign Up</SubmitButton>
+          <SubmitButton>注册</SubmitButton>
           <p className="text-center text-sm text-gray-600 mt-4 dark:text-zinc-400">
-            {"Already have an account? "}
+            {"已有账号？"}
             <Link
               href="/login"
               className="font-semibold text-gray-800 hover:underline dark:text-zinc-200"
             >
-              Sign in
+              立即登录
             </Link>
-            {" instead."}
           </p>
         </AuthForm>
       </div>

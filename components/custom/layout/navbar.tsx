@@ -3,7 +3,8 @@ import {
   Calculator, 
   Microscope,
   FlaskConical,
-  ChevronDown 
+  ChevronDown,
+  Menu
 } from "lucide-react";
 import Link from "next/link";
 
@@ -16,8 +17,13 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-
-import { ThemeToggle } from "../theme-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const navItems = [
   {
@@ -60,7 +66,7 @@ export const Navbar = async () => {
             </span>
           </Link>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6">
             {navItems.map((item) => (
               <Link
@@ -74,9 +80,64 @@ export const Navbar = async () => {
             ))}
           </div>
 
-          {/* Auth */}
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-64">
+                <SheetHeader>
+                  <SheetTitle className="text-left">导航菜单</SheetTitle>
+                </SheetHeader>
+                <div className="mt-6 flex flex-col space-y-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-secondary"
+                    >
+                      <item.icon className="w-4 h-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  ))}
+                  <div className="h-px bg-border my-4" />
+                  {session ? (
+                    <>
+                      <Link
+                        href="/dashboard"
+                        className="flex items-center space-x-2 text-sm p-2 rounded-md hover:bg-secondary"
+                      >
+                        <span>个人中心</span>
+                      </Link>
+                      <form
+                        action={async () => {
+                          "use server";
+                          await signOut({ redirectTo: "/" });
+                        }}
+                      >
+                        <button 
+                          type="submit" 
+                          className="w-full text-left text-sm text-red-500 p-2 rounded-md hover:bg-secondary"
+                        >
+                          退出登录
+                        </button>
+                      </form>
+                    </>
+                  ) : (
+                    <Button asChild className="w-full">
+                      <Link href="/login">登录</Link>
+                    </Button>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          {/* Auth (Desktop) */}
+          <div className="hidden md:block">
             {session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -85,7 +146,7 @@ export const Navbar = async () => {
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard">个人中心</Link>
                   </DropdownMenuItem>
@@ -115,4 +176,6 @@ export const Navbar = async () => {
       </nav>
     </header>
   );
-}
+};
+
+export default Navbar;
