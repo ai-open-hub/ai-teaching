@@ -5,9 +5,17 @@ import type { ComponentType } from 'react';
 /**
  * 组件加载器配置类型
  */
+// interface VisualizationLoaderConfig {
+//   [key: string]: {
+//     import: () => Promise<{ default: ComponentType<any> }>;
+//     type: 'static' | 'interactive' | 'animation' | 'game';
+//   };
+// }
+
+// loader.ts
 interface VisualizationLoaderConfig {
   [key: string]: {
-    import: () => Promise<{ default: ComponentType<any> }>;
+    import: () => Promise<{ [key: string]: ComponentType<any> }>;
     type: 'static' | 'interactive' | 'animation' | 'game';
   };
 }
@@ -20,15 +28,18 @@ const loaderConfig: VisualizationLoaderConfig = {
 
   // 乘法相关组件
   'multiplication/MultiplicationGrid': {
-    import: () => import('@/components/math/visualizer/multiplication/MultiplicationGrid').then((mod) => mod.MultiplicationGrid),
+    import: () => import('@/components/math/visualizer/multiplication/MultiplicationGrid')
+      .then(mod => ({ default: mod.MultiplicationGrid })),
     type: 'interactive'
   },
   'multiplication/MultiplicationShop': {
-    import: () => import('@/components/math/visualizer/multiplication/MultiplicationShop').then((mod) => mod.MultiplicationShop),
+    import: () => import('@/components/math/visualizer/multiplication/MultiplicationShop')
+      .then(mod => ({ default: mod.MultiplicationShop })),
     type: 'game'
   },
   'multiplication/MultiplicationStory': {
-    import: () => import('@/components/math/visualizer/multiplication/MultiplicationStory').then((mod) => mod.MultiplicationStory),
+    import: () => import('@/components/math/visualizer/multiplication/MultiplicationStory')
+      .then(mod => ({ default: mod.MultiplicationStory })),
     type: 'animation'
   },
   // ... 可以继续添加更多组件
