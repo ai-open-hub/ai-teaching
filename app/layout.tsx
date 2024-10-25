@@ -1,5 +1,3 @@
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
 import { Metadata } from "next";
 import { Toaster } from "sonner";
 
@@ -19,7 +17,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="zh-CN">
       <body className="min-h-screen bg-background font-sans antialiased">
         <ThemeProvider
           attribute="class"
